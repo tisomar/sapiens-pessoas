@@ -1,0 +1,116 @@
+<?php include 'header.php'; ?>
+
+<body>
+<h1>Dados do Servidor</h1>
+<table>
+    <thead>
+    {# <tr>
+                    <th class="informacao">Servidor</th>
+                    <td class="valor">100649241-MARCELO NUNES DOS SANTOS</td>
+                </tr> #}
+
+    </thead>
+    <tbody>
+    <tr>
+        <th class="informacao">Nome</th>
+        <td class="valor">{{ servidor.nome is defined ? servidor.nome : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Data Nascimento</th>
+        <td class="valor">{{ servidor.dataNascimento is defined ? servidor.dataNascimento | date('d/m/Y') : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Sexo</th>
+        <td class="valor">{{ servidor.sexo is defined ? servidor.sexo : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Estado Civil</th>
+        <td class="valor">{{ servidor.estadoCivil.descricao is defined ? servidor.estadoCivil.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Nome do Pai</th>
+        <td class="valor">{{ servidor.nomePai is defined ? servidor.nomePai : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Nome da Mãe</th>
+        <td class="valor">{{ servidor.nomeMae is defined ? servidor.nomeMae : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Nome do Cônjuge</th>
+        <td class="valor">{{ servidor.nomeConjuge is defined ? servidor.nomeConjuge : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Escolaridade</th>
+        <td class="valor">{{ servidor.escolaridade.descricao is defined ? servidor.escolaridade.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Formação</th>
+        <td class="valor">{{ servidor.formacaoProfissional.descricao is defined ? servidor.formacaoProfissional.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Situação Funcional</th>
+        <td class="valor">{{ servidor.tipoServidor.descricao is defined ? servidor.tipoServidor.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Data Ingresso</th>
+        <td class="valor">{{ dadoFuncional.dataIngressoOrgao is defined ? dadoFuncional.dataIngressoOrgao | date('m/m/Y') : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Data Óbito</th>
+        <td class="valor">{{ servidor.dataObito is defined ? servidor.dataObito : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Data Rescisão</th>
+        <td class="valor">{{ dadoFuncional.dataRescisao is defined ? dadoFuncional.dataRescisao | date('d/m/Y') : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Data Aposentadoria</th>
+        <td class="valor">{{ servidor.dataAposentadoria is defined ? servidor.dataAposentadoria : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">E-mail</th>
+        <td class="valor">{{ servidor.email is defined ? servidor.email : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Etnia</th>
+        <td class="valor">{{ servidor.etnia.descricao is defined ? servidor.etnia.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Cor</th>
+        <td class="valor">{{ servidor.cor.descricao is defined ? servidor.cor.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Tipo Sanguíneo</th>
+        <td class="valor">{{ servidor.tipoSanguineo.descricao is defined ? servidor.tipoSanguineo.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Doador</th>
+        <td class="valor">{{ servidor.inDoador is defined ? servidor.inDoador : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Município</th>
+        <td class="valor">{{ servidor.municipioNascimento.nome is defined ? servidor.municipioNascimento.nome : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th class="informacao">Portador Necessidades Especiais</th>
+        <td class="valor">
+            {% if servidor.inPortadorNecessidadeEspecial is defined %}
+                <p>{{ servidor.inPortadorNecessidadeEspecial ? 'Sim' : 'Não' }}</p>
+            {% else %}
+                <p>Não informado</p>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <th class="informacao">Status do Servidor</th>
+        <td class="valor">
+            {% if servidor.status is defined %}
+                <p>{{ servidor.status ? 'Ativo' : 'Inativo' }}</p>
+            {% else %}
+                <p>Não informado</p>
+            {% endif %}</td>
+    </tr>
+    </tbody>
+</table>
+
+<?php include 'footer.php'; ?>

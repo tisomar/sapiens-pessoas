@@ -1,0 +1,29 @@
+{% set dataReferencia = "1990-12-11"|date("U") %}
+{% set dataIngressoTimestamp = dataIngresso|date("U") %}
+
+{% if dataIngressoTimestamp <= dataReferencia %}
+    <div class="container">
+        <h1>DECLARAÇÃO JUNTO AO INSS</h1>
+        <p>Declaramos, junto ao Instituto Nacional do Seguro Social-INSS, que <strong>{{ nome }}</strong>, CPF nº
+            <strong>{{ cpf }}</strong>, ingressou no serviço público em <strong>{{ dataIngresso }}</strong>, sob o regime de
+            Consolidação das Leis do Trabalho - CLT até 11/12/1990, quando passou a ser vinculado ao Regime Jurídico Único -
+            RJU. Integra o quadro de pessoal da Advocacia-Geral da União, CNPJ 26.994.558/0003-95, com exercício em
+            <strong>{{ dataPosse }}</strong>, encontrando-se investido no cargo efetivo de
+            <strong>{{ cargoEfetivo }}</strong>,
+            sob a matrícula SIAPE nº <strong>{{ matriculaSiape }}</strong>, somando até a presente data o total de
+            <strong>{{ totalDias }}</strong> dias brutos , ou seja, <strong>{{ totalAnos }}</strong> anos,
+            <strong>{{ totalMeses }}</strong> meses e <strong>{{ totalDiasRestantes }}</strong> dias de serviço público.</p>
+        <p>Ademais, declaramos que em consulta ao Sistema Integrado de Administração de Recursos Humanos - SIAPE, não
+            constatamos períodos anteriores averbados.</p>
+        <p>Conforme determinação constante no art.96 da Lei 8.213/91 e da orientação do Ministério da Economia (Nota Técnica
+            SEI
+            Nº 15790/2020), o tempo de contribuição prestado por ex-empregados públicos em período anterior à instituição do
+            Regime Próprio de Previdência Social, pela Lei 8.112, em 11 de dezembro de 1990, será atestado pelo Instituto
+            Nacional do Seguro Social, com redação da Lei nº 13.846, de 2019.</p>
+        <p>Brasília, {{ dataAtual }}.</p>
+        <p>(documento assinado eletronicamente)</p>
+        <p>BERNARDO BARCA GONÇALVES TEIXEIRA ARANTES<br>Administrador</p>
+    </div>
+{% else %}
+    <p>A data de ingresso é posterior a 11/12/1990. O conteúdo da declaração não será exibido.</p>
+{% endif %}

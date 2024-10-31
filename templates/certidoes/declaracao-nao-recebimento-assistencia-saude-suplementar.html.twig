@@ -1,0 +1,30 @@
+<?php include 'header.php'; ?>
+<div class="container">
+    <h1>DECLARAÇÃO DE NÃO RECEBIMENTO DE ASSISTÊNCIA SAÚDE SUPLEMENTAR</h1>
+    <p>
+        Declaramos que <strong>{{ nome }}</strong>, CPF n° <strong>{{ cpf }}</strong>, integra o quadro de pessoal da
+        Advocacia-Geral da União, CNPJ 26.994.558/0003-95, encontrando-se investido no cargo efetivo de
+        <strong>{{ cargoEfetivo }}</strong>, sob a matrícula SIAPE nº <strong>{{ matriculaSiape }}</strong>.
+    </p>
+    <p>
+        Ademais, declaramos que conforme consulta ao Sistema Integrado de Administração de Recursos Humanos – SIAPE, o
+        aludido <strong>{{ nome }}</strong>
+        {% if dataCompetencia is not empty  %}
+            não recebe o benefício de Assistência Saúde Suplementar desde a competência
+            de
+            <strong>{{ dataCompetencia }}</strong>.
+        {% else %}
+            não recebe o benefício de Assistência Saúde Suplementar.
+        {% endif %}
+
+    </p>
+    <p>
+        Brasília, 04 de julho de 2024.
+    </p>
+    <p>
+        (documento assinado eletronicamente)<br>
+        BERNARDO BARCA GONÇALVES TEIXEIRA ARANTES<br>
+        Administrador
+    </p>
+</div>
+<?php include 'footer.php'; ?>

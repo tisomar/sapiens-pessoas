@@ -1,0 +1,29 @@
+<?php include 'header.php'; ?>
+
+<body>
+<h1>Documentação</h1>
+<table>
+    {#            <tr>#}
+    {#                <th>Nome Completo</th>#}
+    {#                <td>{{ servidor.nome }}</td>#}
+    {#            </tr>#}
+    <tr>
+        <th>Tipo do documento</th>
+        <th>Número do documento</th>
+        <th>UF</th>
+        <th>Orgão expedidor</th>
+        <th>Data de expedição</th>
+        {#                    <td>{{ documentacoes.tipo.descricao }}</td>#}
+    </tr>
+    {% for documento in documentacao %}
+        <tr>
+            <td>{{  documento.tipo.descricao is defined ? documento.tipo.descricao : 'Não informado' }}</td>
+            <td>{{  documento.numero is defined ? documento.numero : 'Não informado' }}</td>
+            <td>{{ documento.uf.sigla is defined ? documento.uf.sigla : 'Não informado' }}</td>
+            <td>{{  documento.orgaoExpedidor is defined ? documento.orgaoExpedidor : 'Não informado' }}</td>
+            <td>{{  documento.dataExpedicao is defined ? documento.dataExpedicao | date('d/m/Y') : 'Não informado' }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<?php include 'footer.php'; ?>

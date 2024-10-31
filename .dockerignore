@@ -1,0 +1,5 @@
+docker/dev/oracle/dumps/*
+docker/dev/oracle/volume/*
+docker/dev/mysql/*
+var/*
+config/packages/dev/monolog.yaml

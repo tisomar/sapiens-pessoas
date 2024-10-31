@@ -1,0 +1,11 @@
+monolog:
+    handlers:
+        main:
+            type: filter
+            min_level: error
+            handler: rotating_file
+        rotating_file:
+            type: rotating_file
+            path: "/app/var/log/dev.log"
+            max_files: 3
+            level: debug

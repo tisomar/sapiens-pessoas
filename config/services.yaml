@@ -1,0 +1,142 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+
+    dms.filter.mapping.loader.class: AguPessoas\Backend\Bundles\DMS\Filter\Mapping\Loader\AnnotationLoader
+    dms.filter.mapping.factory.class: AguPessoas\Backend\Bundles\DMS\Filter\Mapping\ClassMetadataFactory
+    dms.filter.inner.filter.class: AguPessoas\Backend\Bundles\DMS\Filter\Filter
+    dms_filter.auto_filter_forms: true
+    url_frontend: '%env(URL_FRONTEND)%'
+    url_super_sapiens: '%env(URL_SUPER_SAPIENS)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $projectDir: '%kernel.project_dir%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    AguPessoas\Backend\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Service/'
+    Doctrine\DBAL\Event\Listeners\OracleSessionInit:
+        class: Doctrine\DBAL\Event\Listeners\OracleSessionInit
+        tags:
+            - { name: doctrine.event_subscriber }
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    AguPessoas\Backend\Controller\:
+        resource: '../src/Controller/*'
+        tags: [ 'controller.service_arguments' ]
+    # DMS
+    AguPessoas\Backend\Bundles\DMS\Bundle\FilterBundle\Service\Filter:
+        public: true
+        arguments:
+            - '@dms.filter.inner.filter'
+
+    AguPessoas\Backend\Bundles\DMS\Bundle\FilterBundle\Form\Type\FormTypeFilterExtension:
+        public: true
+        arguments:
+            - '@AguPessoas\Backend\Bundles\DMS\Bundle\FilterBundle\Service\Filter'
+            - '%dms_filter.auto_filter_forms%'
+        tags:
+            - { name: form.type_extension, alias: Symfony\Component\Form\Extension\Core\Type\FormType, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    AguPessoas\Backend\Bundles\DMS\Bundle\FilterBundle\Loader\ContainerAwareLoader:
+        calls:
+            - [ setContainer,  [ '@service_container' ] ]
+
+    AguPessoas\Backend\Api\V1\Controller\:
+        resource: '../src/Api/V1/Controller/*'
+        tags: [ 'controller.service_arguments' ]
+
+    AguPessoas\Backend\Api\V1\Triggers\:
+        resource: '../src/Api/V1/Triggers/*/*'
+        tags: [ 'triggers_manager.trigger' ]
+        exclude: '../src/Api/V1/Triggers/*/*/*'
+        lazy: true
+
+    AguPessoas\Backend\Mapper\DefaultMapper:
+        class: AguPessoas\Backend\Mapper\DefaultMapper
+        tags: [ 'dto_mapper.mapper' ]
+
+    AguPessoas\Backend\Api\V1\Mapper\:
+        resource: '../src/Api/V1/Mapper/*'
+        tags: [ 'dto_mapper.mapper' ]
+        exclude: '../src/Api/V1/Mapper/Pipes'
+
+    AguPessoas\Backend\Doctrine\ORM\Immutable\ImmutableListener:
+        class: AguPessoas\Backend\Doctrine\ORM\Immutable\ImmutableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default, priority: -1 }
+
+    AguPessoas\Backend\Api\V1\Mapper\Pipes\:
+        resource: '../src/Api/V1/Mapper/Pipes/*/*'
+        tags: [ 'pipes_manager.pipe' ]
+        exclude: '../src/Api/V1/Mapper/Pipes/*/*/*'
+        lazy: true
+
+    AguPessoas\Backend\Api\V2\Controller\:
+        resource: '../src/Api/V2/Controller/*'
+        tags: [ 'controller.service_arguments' ]
+
+    Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'
+
+    Redis: '@snc_redis.default'
+
+    dms.filter.mapping.loader:
+        class: '%dms.filter.mapping.loader.class%'
+        public: true
+        arguments:
+            - '@annotation_reader'
+
+    dms.filter.mapping.factory:
+        class: '%dms.filter.mapping.factory.class%'
+        arguments:
+            - '@dms.filter.mapping.loader'
+
+    dms.filter.inner.filter:
+        class: '%dms.filter.inner.filter.class%'
+        arguments:
+            - '@dms.filter.mapping.factory'
+            - '@AguPessoas\Backend\Bundles\DMS\Bundle\FilterBundle\Loader\ContainerAwareLoader'
+
+    AguPessoas\Backend\Bundles\DMS\Bundle\FilterBundle\Filter\ContainerFilter:
+        public: true
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
+
+    AguPessoas\Backend\Rest\Describer\ApiDocDescriber:
+        tags:
+            - { name: nelmio_api_doc.describer, priority: -500 }
+        lazy: true
+
+    AguPessoas\Backend\Rest\Describer\ApiDocDescriberInformation:
+        arguments:
+            $rootDir: '%kernel.project_dir%'
+        tags:
+            - { name: nelmio_api_doc.describer, priority: -500 }
+        lazy: true
+    AguPessoas\Backend\Command\Token\SaveSapiensTokenCommand:
+        arguments:
+            $tokenController: '@AguPessoas\Backend\Api\V1\Controller\TokenController'
+            $requestStack: '@request_stack'
+        tags:
+            - { name: 'console.command' }
+    AguPessoas\Backend\Gateways\SuperSapiens\SuperSapiensGateway:
+        arguments:
+            $client: '@http_client'
+    AguPessoas\Backend\Api\V2\Service\SuperSapiens\SuperSapiensService:
+        arguments:
+            $superSapiensGateway: '@AguPessoas\Backend\Gateways\SuperSapiens\SuperSapiensGateway'

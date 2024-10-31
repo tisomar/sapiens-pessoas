@@ -1,0 +1,135 @@
+<?php include 'header.php'; ?>
+
+<body>
+<table>
+    <h1>Dados Funcionais</h1>
+    {#        <tr>#}
+    {#            <th>Servidor</th>#}
+    {#            <td>{{ dadoFuncional.servidor.nome }}</td>#}
+    {#        </tr>#}
+    <tr>
+        <th>Data de Ingresso</th>
+        <td>{{ dadoFuncional.dataIngressoOrgao is defined ? dadoFuncional.dataIngressoOrgao | date('d/m/Y') : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Código SIAPE</th>
+        <td>{{ dadoFuncional.matriculaSiape is defined ? dadoFuncional.matriculaSiape : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Regime Jurídico</th>
+        <td>{{ dadoFuncional.regimeJuridico.descricao is defined ? dadoFuncional.regimeJuridico.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Situação Funcional</th>
+        <td>{{ servidor.tipoServidor.descricao is defined ? servidor.tipoServidor.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Cargo Efetivo</th>
+        <td>{{ cargoEfetivo.cargo.codigo is defined ? cargoEfetivo.cargo.codigo : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Descrição Cargo</th>
+        <td>{{ cargoEfetivo.cargo.descricao is defined ? cargoEfetivo.cargo.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Classe</th>
+        <td>{{ classePadrao.tipoPadrao.tipoClasse.descricao is defined ? classePadrao.tipoPadrao.tipoClasse.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Ingresso</th>
+        <td>{{ ingresso is defined ? ingresso : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Padrão</th>
+        <td>{{ classePadrao.tipoPadrao.descricao is defined ? classePadrao.tipoPadrao.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Cargo/Função Comissionada</th>
+        <td>{{ funcaoComissionada.cargoFuncao.codigo is defined ? funcaoComissionada.cargoFuncao.codigo : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Descrição Função Comissionada</th>
+        <td>{{ funcaoComissionada.cargoFuncao.descricao is defined ? funcaoComissionada.cargoFuncao.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Função</th>
+        <td>{{ funcaoComissionada.cargoFuncao.sigla is defined ? funcaoComissionada.cargoFuncao.sigla : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Opção</th>
+        <td>{{ funcaoComissionada.cargoFuncao.inOpcao is defined ? funcaoComissionada.cargoFuncao.inOpcao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Descrição Opção</th>
+        <td>{{ funcaoComissionada.tipoOpcao.descricao is defined ? funcaoComissionada.tipoOpcao.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Código Órgão</th>
+        <td>{{ codigoOrgao is defined ? codigoOrgao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Descrição Órgão</th>
+        <td>{{ descricaoOrgao is defined ? descricaoOrgao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Lotação Origem</th>
+        <td>{{ cargoEfetivo.lotacaoOrigem.codigo is defined ? cargoEfetivo.lotacaoOrigem.codigo : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Descrição Lotação Origem</th>
+        <td>{{ cargoEfetivo.lotacaoOrigem.descricao is defined ? cargoEfetivo.lotacaoOrigem.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Lotação Exercício</th>
+        <td>{{ cargoEfetivo.lotacaoExercicio.codigo is defined ? cargoEfetivo.lotacaoExercicio.codigo : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Descrição Lotação Exercício</th>
+        <td>{{ cargoEfetivo.lotacaoExercicio.descricao is defined ? cargoEfetivo.lotacaoExercicio.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Área de Atuação</th>
+        <td>{{ dadoFuncional.areaAtuacao.codigo is defined ? dadoFuncional.areaAtuacao.codigo : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Data Rescisão</th>
+        <td>{{ dadoFuncional.dataRescisao is defined ? dadoFuncional.dataRescisao | date('d/m/Y') : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Data de Óbito</th>
+        <td>{{ servidor.dataObito is defined ? servidor.dataObito | date('d/m/Y') : 'Não informado' }}</td>
+    </tr>
+</table>
+
+<fieldset>
+    <legend>RAIS</legend>
+    <table>
+        <tr>
+            <th>Tipo de Salário</th>
+            <td>{{ dadoFuncional.tipoSalario.descricao is defined ? dadoFuncional.tipoSalario.descricao : 'Não informado' }}</td>
+        </tr>
+        <tr>
+            <th>Tipo de Admissão</th>
+            <td>{{ dadoFuncional.tipoAdmissao.descricao is defined ? dadoFuncional.tipoAdmissao.descricao : 'Não informado' }}</td>
+        </tr>
+        <tr>
+            <th>Vínculo</th>
+            <td>{{ dadoFuncional.vinculoRais.descricao is defined ? dadoFuncional.vinculoRais.descricao : 'Não informado' }}</td>
+        </tr>
+        <tr>
+            <th>Situação</th>
+            <td>{{ dadoFuncional.situacaoRais.descricao is defined ? dadoFuncional.situacaoRais.descricao : 'Não informado' }}</td>
+        </tr>
+        <tr>
+            <th>Desligamento</th>
+            <td>{{ desligamento is defined ? desligamento : 'Não informado' }}</td>
+        </tr>
+        <tr>
+            <th>Observação</th>
+            <td>{{ dadoFuncional.observacao is defined ? dadoFuncional.observacao : 'Não informado' }}</td>
+        </tr>
+    </table>
+</fieldset>
+
+
+<?php include 'footer.php'; ?>

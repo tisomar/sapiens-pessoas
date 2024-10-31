@@ -1,0 +1,36 @@
+<?php include 'header.php'; ?>
+
+<body>
+<table>
+    <h1>Dados Bancários</h1>
+    {#        <tr>#}
+    {#            <th>Servidor</th>#}
+    {#            <td>{{ dadoFuncional.servidor.nome }}</td>#}
+    {#        </tr>#}
+    <tr>
+        <td>Tipo de conta:</td>
+        <td>{{ dadoBancario.tipoConta.descricao is defined ? dadoBancario.tipoConta.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <td>Banco:</td>
+        <td>{{ dadoBancario.agencia.banco.descricao is defined ? dadoBancario.agencia.banco.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <td>Agência:</td>
+        <td>{{ dadoBancario.agencia.descricao is defined ? dadoBancario.agencia.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <td>Operação:</td>
+        <td>{{ dadoBancario.agencia.banco.codigo is defined ? dadoBancario.agencia.banco.codigo : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <td>Número da conta:</td>
+        <td>{{ dadoBancario.numeroConta is defined ? dadoBancario.numeroConta : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <td>Dígito da conta:</td>
+        <td>{{ dadoBancario.digitoConta is defined ? dadoBancario.digitoConta : 'Não informado' }}</td>
+    </tr>
+</table>
+
+<?php include 'footer.php'; ?>

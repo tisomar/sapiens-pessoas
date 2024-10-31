@@ -1,0 +1,64 @@
+<?php include 'header.php'; ?>
+<div class="container">
+    <h1>PÓS GRADUAÇÃO NO PAÍS OU EXTERIOR</h1>
+    <p>Trata-se de declaração de afastamento para participação em programas de pós-graduação stricto sensu no exterior,
+        solicitada por <strong>{{ solicitante }}</strong>, <strong>{{ cargo }}</strong>, matrícula SIAPE nº
+        <strong>{{ matriculaSiape }}</strong>, a respeito do qual prestamos as informações correspondentes:</p>
+    <p>O interessado:</p>
+    <ul>
+        <li>a) encontra-se lotado na <strong>{{ unidadeLotacao }}</strong> e em exercício na
+            <strong>{{ exercicio }}</strong>;
+        </li>
+        <li>b) ingressou no Serviço Público Federal em <strong>{{ ingressoServicoPublico }}</strong> e na
+            Advocacia-Geral da
+            União com exercício em <strong>{{ posseExercicio }}</strong>;
+        </li>
+        <li>c) conta, até o momento, com <strong>{{ anosServico }}</strong> anos, <strong>{{ mesesServico }}</strong>
+            meses
+            e <strong>{{ diasServico }}</strong> dias de
+            serviço público;
+        </li>
+        <li>d) não se encontra em estágio probatório;</li>
+        <li>e) não foi afastado nos 2 (dois) anos anteriores à data da solicitação, para a licença para tratar de
+            assuntos
+            particulares e licença para participação em curso de Pós-Graduação;
+        </li>
+        <li>f) não se afastou para licença capacitação e não se afastou para estudos de missão no exterior.</li>
+    </ul>
+    <p>Verifica-se, ainda, que o número de servidores administrativos e membros de carreira em gozo simultâneo de
+        licença
+        para capacitação não excede em 20% (vinte por cento) da lotação da respectiva unidade organizacional, limitado a
+        5%
+        (cinco por cento) do total de membros ou de servidores administrativos em exercício na respectiva carreira,
+        conforme
+        o disposto no art. 36 da Portaria AGU nº 390/2020 e que o afastamento para o gozo simultâneo de licença para
+        capacitação não excede em 2% (dois por cento) o número de membros de carreira ou de servidores administrativo em
+        exercício no órgão ou na respectiva unidade organizacional, conforme o disposto no parágrafo único do art. 27 do
+        Decreto/PR nº 9991 de 28/08/2019, para o período de <strong>{{ periodoInicio }}</strong> a
+        <strong>{{ periodoFim }}</strong> (<strong>{{ diasPeriodo }}</strong> dias brutos),
+        ou seja <strong>{{ anosPeriodo }}</strong> anos, <strong>{{ mesesPeriodo }}</strong> meses e
+        <strong>{{ diasPeriodo }}</strong> dias.</p>
+    <h2>Informação do SIAPE referente às FÉRIAS:</h2>
+    {# <p>EXERCÍCIO: 2024</p> #}
+    {% for parcela in ferias %}
+        <p>PARCELA {{ loop.index }}: PERÍODO DE FÉRIAS: <strong>{{ parcela.dataInicio }}</strong> a
+            <strong>{{ parcela.dataFim }}</strong>
+            (<strong>{{ parcela.qtdDias }}</strong> dias) referente ao exercício
+            <strong>{{ parcela.exercicio }}</strong>;</p>
+    {% else %}
+        <p>*Não constam períodos de férias marcadas/homologadas para o Exercício do ano de 2024.</p>
+    {% endfor %}
+
+    <p>Salientamos que o período de licença pleiteado não coincide com o período de férias acima mencionado.</p>
+    <p>Por fim, o aludido <strong>{{ cargoAludido }}</strong> não exerce cargo em comissão ou função de confiança nesta
+        Advocacia, bem como
+        não recebe gratificação e adicionais vinculados à atividade ou ao local de trabalho, conforme condições
+        descritas no
+        art. 18 do Decreto nº 9.991/2019.</p>
+    <p>Com essas informações, sugiro a restituição do processo ao interessado.</p>
+    <p>Brasília, {{ dataAtual }}.</p>
+    <p>(documento assinado eletronicamente)</p>
+    <p>BERNARDO BARCA GONÇALVES TEIXEIRA ARANTES</p>
+    <p>Administrador</p>
+</div>
+<?php include 'footer.php'; ?>

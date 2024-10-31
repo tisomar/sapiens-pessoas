@@ -1,0 +1,32 @@
+<?php include 'header.php'; ?>
+
+<body>
+<h1>Endereços</h1>
+<table>
+    {#    <tr>#}
+    {#        <th>Nome Completo</th>#}
+    {#        <td>{{ servidor.nome }}</td>#}
+    {#    </tr>#}
+    <tr>
+        <th>Tipo do endereço</th>
+        <th>CEP</th>
+        <th>Logradouro</th>
+        <th>Complemento</th>
+        <th>Bairro</th>
+        <th>Estado</th>
+        <th>Cidade</th>
+    </tr>
+    {% for endereco in enderecos %}
+        <tr>
+            <td>{{ endereco.tipoEndereco.descricao is defined ? endereco.tipoEndereco.descricao : 'Não informado' }}</td>
+            <td>{{ endereco.cep is defined ? endereco.cep : 'Não informado' }}</td>
+            <td>{{ endereco.logradouro is defined ? endereco.logradouro : 'Não informado' }}</td>
+            <td>{{ endereco.complemento is defined ? endereco.complemento : 'Não informado' }}</td>
+            <td>{{ endereco.bairro is defined ? endereco.bairro : 'Não informado' }}</td>
+            <td>{{ endereco.uf.sigla is defined ? endereco.uf.sigla : 'Não informado' }}</td>
+            <td>{{ endereco.municipio.nome is defined ? endereco.municipio.nome : 'Não informado' }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<?php include 'footer.php'; ?>

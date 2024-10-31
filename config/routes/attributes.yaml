@@ -1,0 +1,15 @@
+controllers:
+    resource: ../../src/Controller/
+    type: attribute
+
+api_v1_controllers:
+    resource: ../../src/Api/V1/Controller/
+    type: attribute
+
+api_v2_controllers:
+    resource: ../../src/Api/V2/Controller/
+    type: attribute
+
+kernel:
+    resource: ../../src/Kernel.php
+    type: attribute

@@ -1,0 +1,11 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+0 2 * * * /usr/local/bin/php /var/www/html/bin/console app:sigepe-atualizacao-servidores DP --env=prod
+0 2 * * * /usr/local/bin/php /var/www/html/bin/console app:sigepe-atualizacao-servidores DE --env=prod
+0 2 * * * /usr/local/bin/php /var/www/html/bin/console app:sigepe-atualizacao-servidores END_TEL --env=prod
+0 2 * * * /usr/local/bin/php /var/www/html/bin/console app:sigepe-atualizacao-servidores DOC --env=prod
+0 2 * * * /usr/local/bin/php /var/www/html/bin/console app:sigepe-atualizacao-servidores DBA --env=prod
+0 2 * * * /usr/local/bin/php /var/www/html/bin/console app:sigepe-atualizacao-servidores DEP --env=prod
+0 2 * * * /usr/local/bin/php /var/www/html/bin/console app:sigepe-atualizacao-servidores FER --env=prod
+0 2 * * * /usr/local/bin/php /var/www/html/bin/console app:sigepe-atualizacao-servidores DF --env=prod

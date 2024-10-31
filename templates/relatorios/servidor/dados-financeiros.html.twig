@@ -1,0 +1,64 @@
+<?php include 'header.php'; ?>
+
+<body>
+<table>
+    <h1>Dados Financeiros</h1>
+    {#        <tr>#}
+    {#            <th>Servidor</th>#}
+    {#            <td>{{ dadoFuncional.servidor.nome }}</td>#}
+    {#        </tr>#}
+    <tr>
+        <th>Cálculo Folha de Pagamento</th>
+        <td>{{ dadoFinanceiro.inCalculaFolhaPagamento is defined ? dadoFinanceiro.inCalculaFolhaPagamento : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Regime Previdenciário</th>
+        <td>{{ dadoFinanceiro.regimePrevidenciario.descricao is defined ? dadoFinanceiro.regimePrevidenciario.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Data de Ônus Para o Órgão</th>
+        <td>{{ dadoFinanceiro.dataOnusOrgao is defined ? dadoFinanceiro.dataOnusOrgao | date('d/m/Y') : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Horas Base Mensal</th>
+        <td>{{ dadoFinanceiro.horaBaseMensal is defined ? dadoFinanceiro.horaBaseMensal : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Data Suspensão do Pgto</th>
+        <td>{{ dadoFinanceiro.dataSuspensaoPagamento is defined ? dadoFinanceiro.dataSuspensaoPagamento : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Horário de Trabalho</th>
+        <td>{{ dadoFinanceiro.horario.descricao is defined ? dadoFinanceiro.horario.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Adicional Tempo Serviço</th>
+        <td>{{ dadoFinanceiro.percentualTempoServico is defined ? dadoFinanceiro.percentualTempoServico : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Valor Abatimento IRRF</th>
+        <td>{{ dadoFinanceiro.valorAbatimentoIrrf is defined ? dadoFinanceiro.valorAbatimentoIrrf : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Dependentes SF</th>
+        <td>{{ dadoFinanceiro.qtdDependentes is defined ? dadoFinanceiro.qtdDependentes : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Dependentes IRRF</th>
+        <td>{{ dadoFinanceiro.qtdDependentesIrrf is defined ? dadoFinanceiro.qtdDependentesIrrf : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Data da Aposentadoria</th>
+        <td>{{ aposentadoria.dataAposentadoria is defined ? aposentadoria.dataAposentadoria | date('d/m/Y') : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Natureza</th>
+        <td>{{ natureza is defined ? aposentadoria.tipoAposentadoria : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Proporcionalidade</th>
+        <td>{{ aposentadoria.proporcionalidade is defined ? aposentadoria.proporcionalidade : 'Não informado' }}</td>
+    </tr>
+</table>
+
+<?php include 'footer.php'; ?>

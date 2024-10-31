@@ -1,0 +1,79 @@
+<?php include 'header.php'; ?>
+
+<body>
+<table>
+    <h1>Dados Concurso</h1>
+    {#        <tr>#}
+    {#            <th>Servidor</th>#}
+    {#            <td>{{ dadoFuncional.servidor.nome }}</td>#}
+    {#        </tr>#}
+    <tr>
+        <th>Concurso de ingresso:</th>
+        <td>{{ cargoEfetivo.numeroConcurso is defined and cargoEfetivo.anoConcurso is defined ? cargoEfetivo.numeroConcurso ~ ' / ' ~ cargoEfetivo.anoConcurso : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Classificação:</th>
+        <td>{{ cargoEfetivo.classificacaoConcurso is defined ? cargoEfetivo.classificacaoConcurso : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Carreira precedente:</th>
+        <td>{{ carreiraPrecedente is defined ? carreiraPrecedente : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Data início da carreira:</th>
+        <td>{{ dadoPromocao.dataCarreiraPrecedente is defined ? dadoPromocao.dataCarreiraPrecedente : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Classificação geral antiguidade:</th>
+        <td>{{ cargoEfetivo.classificacaoConcurso is defined ? cargoEfetivo.classificacaoConcurso : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Entre:</th>
+        <td>{{ entre is defined ? entre : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>E:</th>
+        <td>{{ e is defined ? e : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Data de ingresso na primeira categoria:</th>
+        <td>{{ dataIngressoPrimeiraCategoria is defined ? dataIngressoPrimeiraCategoria : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Data de ingresso na categoria especial:</th>
+        <td>{{ dataIngressoCategoriaEspecial is defined ? dataIngressoCategoriaEspecial : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Unidade de difícil provimento:</th>
+        <td>{{ unidadeDificilProvimento is defined ? unidadeDificilProvimento : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Tipo classe:</th>
+        <td>{{ classePadrao.tipoPadrao.tipoClasse.descricao is defined ? classePadrao.tipoPadrao.tipoClasse.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Tipo padrão:</th>
+        <td>{{ classePadrao.tipoPadrao.descricao is defined ? classePadrao.tipoPadrao.descricao : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Tempo na categoria funcional que precedeu a carreira (em dias):</th>
+        <td>{{ tempoCategoriaFuncionalPrecedeuCarreira is defined ? tempoCategoriaFuncionalPrecedeuCarreira : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Tempo de serviço em outras carreiras ou cargos efetivos privativos de bacharel em Direito de órgãos e
+            entidades da Administração Federal direta, autarquia e fundacional (em dias):
+        </th>
+        <td>{{ tempoServicoOutrasCarreiras is defined ? tempoServicoOutrasCarreiras : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Tempo de serviço público federal anterior ao ingresso na AGU (dias):</th>
+        <td>{{ tempoServicoPublicoFederalAnteriorIngressoAGU is defined ? tempoServicoPublicoFederalAnteriorIngressoAGU : 'Não informado' }}</td>
+    </tr>
+    <tr>
+        <th>Tempo de exercício da função de mesário ou componente de junta apurador (em dias):</th>
+        <td>{{ tempoExercicioFuncaoMesarioComponenteJuntaApurador is defined ? tempoExercicioFuncaoMesarioComponenteJuntaApurador : 'Não informado' }}</td>
+    </tr>
+</table>
+
+
+<?php include 'footer.php'; ?>

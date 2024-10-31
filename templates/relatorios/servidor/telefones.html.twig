@@ -1,0 +1,24 @@
+<?php include 'header.php'; ?>
+
+<body>
+<h1>Telefones</h1>
+<table>
+    {#    <tr>#}
+    {#        <th>Nome Completo</th>#}
+    {#        <td>{{ servidor.nome }}</td>#}
+    {#    </tr>#}
+    <tr>
+        <th>Tipo do telefone</th>
+        <th>DDD</th>
+        <th>Número</th>
+    </tr>
+    {% for telefone in telefones %}
+        <tr>
+            <td>{{ telefone.tipoTelefone.descricao is defined ? telefone.tipoTelefone.descricao : 'Não informado' }}</td>
+            <td>{{ telefone.ddd is defined ? telefone.ddd : 'Não informado' }}</td>
+            <td>{{ telefone.numero is defined ? telefone.numero : 'Não informado' }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<?php include 'footer.php'; ?>

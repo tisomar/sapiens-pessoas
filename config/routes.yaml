@@ -1,0 +1,13 @@
+#api_v1:
+#    resource:
+#        path: ../src/Api/V1/Controller
+#        namespace: AguPessoas\Backend\Api\V1\Controller
+#    type: attribute
+#    prefix: /api/v1
+#
+api_login_check:
+    path: /v1/login_check
+
+
+
+

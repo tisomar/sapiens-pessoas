@@ -1,0 +1,24 @@
+framework:
+    messenger:
+        serializer:
+            default_serializer: messenger.transport.symfony_serializer
+            symfony_serializer:
+                format: json
+                context: { }
+
+        transports:
+            fila_cadastro_servidor_sigepe:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%fila_cadastro_servidor_sigepe'
+                retry_strategy:
+                    max_retries: 1
+            fila_atualizacao_servidor_sigepe:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%fila_atualizacao_servidor_sigepe'
+                retry_strategy:
+                    max_retries: 1
+            sync: 'sync://'
+        routing:
+            # Route your messages to the transports
+            'AguPessoas\Backend\Message\Command\CadastrarServidor': sync
+            'AguPessoas\Backend\Message\Event\ServidorCriadoEvent': fila_cadastro_servidor_sigepe
+            'AguPessoas\Backend\Message\Command\AtualizarDadosServidor': fila_atualizacao_servidor_sigepe
+
